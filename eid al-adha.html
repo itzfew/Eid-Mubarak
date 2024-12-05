@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Mubarak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-color: #f3e9f7;
+            background-image: url("https://img.freepik.com/premium-vector/nice-abstract-background-with-purple-eps10-artistic-elegant_705028-64.jpg?w=1060");
+            color: #000;
+            font-family: 'Acme', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .quote-container {
+          width: auto;
+          max-width: 900px;
+          padding: 20px 30px;
+          border-radius: 10px;
+          background-color: rgba(255, 255, 255, 0.4);
+          box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .quote-text {
+          font-size: 1.5rem;
+        }
+
+        .long-quote {
+          font-size: 2rem;
+          font-family: 'Caveat Brush', cursive;
+        }
+
+        .fa-quote-left {
+          font-size: 4rem;
+        }
+
+        .quote-greeting {
+          font-family: 'Trade Winds', cursive;
+          margin-top: 15px;
+          font-size: 1.6rem;
+          font-weight: 400;
+        }
+
+        .user-name {
+            font-size: 4rem;
+            font-weight: bold;
+            position: relative;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(
+                90deg,
+                #ff0066,
+                #ff6600,
+                #ffcc00,
+                #66ff66,
+                #00ffcc,
+                #0066ff,
+                #9900cc,
+                #ff33cc,
+                #ff0066
+            );
+            background-size: 500% 500%;
+            animation: candy-colors 6s infinite linear;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes candy-colors {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 200% 50%; }
+            75% { background-position: 300% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        .countdown {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #004d40;
+        }
+
+        input {
+            margin-top: 0px;
+            padding: 10px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        button {
+          margin-top:4px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            height: 2.8rem;
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            background: #000000;
+            outline: none;
+            padding: 0.5rem 1.7rem;
+            box-shadow: 0 0.5rem rgba(121, 121, 121, 0.80);
+        }
+
+        button:hover {
+            background: #000000;
+        }
+
+        button:active {
+            transform: translate(0, 0.3rem);
+            box-shadow: 0 0.1rem rgba(255, 255, 255, 0.65);
+        }
+
+        @media screen and (max-width: 768px) {
+            .quote-text {
+                font-size: 1.8rem;
+            }
+
+            .quote-greeting {
+                font-size: 1.8rem;
+            }
+
+            .countdown {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quote-container" id="quote-container">
+        <!-- Greeting Element -->
+        <div class="quote-greeting">
+            <div class="user-name" id="user-name"></div>
+            <div class="quote-greeting">wishes you</div>
+        
+            <div class="quote-text">
+                <span> A very Happy Eid Mubarak to you! </span>
+            </div>
+            <!-- Quote Element -->
+            <div class="quote-text">
+                <i class="fas fa-quote-left"></i>
+                <span id="quote">On this Eid, I wish you and your family a Happy, Joyous, and Blessed Eid. May Allah grant you peace, love, and happiness.</span>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="countdown" id="countdown">
+                Time left until next Eid: Calculating...
+            </div>
+        </div>
+        <h4>Enter your name and share with Family and Friends</h4>
+        <input type="text" id="name-input" placeholder="Enter your name" />
+
+        <div class="button-container">
+            <button class="whatsapp-button" id="whatsapp-button" title="Share on WhatsApp">
+                <i class="fab fa-whatsapp"></i> Share to WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const nameInput = document.getElementById('name-input');
+        const greetingElement = document.getElementById('user-name');
+        const whatsappButton = document.getElementById('whatsapp-button');
+        const countdownElement = document.getElementById('countdown');
+
+        // Function to update greeting with encoded name from URL if available
+        function updateGreetingFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedName = urlParams.get('name');
+
+            if (encodedName) {
+                const decodedName = atob(encodedName);  // Decode Base64
+                greetingElement.textContent = decodedName.toUpperCase();
+            } else {
+                greetingElement.textContent = '';
+            }
+        }
+
+        // Event listener for input change
+        nameInput.addEventListener('input', () => {
+            const name = nameInput.value.trim();
+            if (name) {
+                greetingElement.textContent = name.toUpperCase();
+            } else {
+                greetingElement.textContent = '';
+            }
+        });
+
+        // Function to generate the custom message with Base64 encoding
+        function generateShareMessage() {
+            const name = nameInput.value.trim();
+            const baseUrl = window.location.href.split('?')[0];
+            const encodedName = btoa(name); // Encode name in Base64
+            const shareUrl = `${baseUrl}?name=${encodedName}`;
+            const shareMessage = `*${name.toUpperCase()}* wishes you Happy Eid, click below blue link to view: ${shareUrl}`;
+            return shareMessage;
+        }
+
+        // Event listener to share the link to WhatsApp
+        whatsappButton.addEventListener('click', () => {
+            const shareMessage = generateShareMessage();
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Countdown Timer Logic
+        function startCountdown() {
+            const nextEid = new Date("2025-06-06T00:00:00"); // Replace with the actual Eid date
+            function updateCountdown() {
+                const now = new Date();
+                const diff = nextEid - now;
+
+                if (diff <= 0) {
+                    countdownElement.textContent = "Eid Mubarak!";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                countdownElement.textContent = `Time left until next Eid: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Initialize Countdown and Greeting
+        updateGreetingFromURL();
+        startCountdown();
+    </script>
+</body>
+</html>
