@@ -12,7 +12,7 @@ function updateGreetingFromURL() {
     
     if (name) {
         // If name is found in URL, display it
-        greetingElement.textContent = name;
+        greetingElement.textContent = name + " wishes you";
     } else {
         // If no name, display empty or default message
         greetingElement.textContent = '';
@@ -23,7 +23,7 @@ function updateGreetingFromURL() {
 nameInput.addEventListener('input', () => {
     const name = nameInput.value.trim();
     if (name) {
-        greetingElement.textContent = name;
+        greetingElement.textContent = name + " wishes you";
     } else {
         greetingElement.textContent = '';
     }
