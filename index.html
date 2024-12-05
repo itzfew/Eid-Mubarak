@@ -124,7 +124,7 @@
             const name = urlParams.get('name');
             
             if (name) {
-                greetingElement.innerHTML = "<strong>" + name + "</strong> wishes you";
+                greetingElement.innerHTML = "<strong>" + name.toUpperCase() + "</strong> wishes you";
             } else {
                 greetingElement.textContent = '';
             }
@@ -134,7 +134,7 @@
         nameInput.addEventListener('input', () => {
             const name = nameInput.value.trim();
             if (name) {
-                greetingElement.innerHTML = "<strong>" + name + "</strong>";
+                greetingElement.innerHTML = "<strong>" + name.toUpperCase() + "</strong> ";
             } else {
                 greetingElement.textContent = '';
             }
@@ -145,7 +145,7 @@
             const name = nameInput.value.trim();
             const baseUrl = window.location.href.split('?')[0];
             const shareUrl = `${baseUrl}?name=${encodeURIComponent(name)}`;
-            const shareMessage = `${name ? `${name}` : 'Someone'} wishes you Happy Eid, click below blue link to view: ${shareUrl}`;
+            const shareMessage = `*${name.toUpperCase()}* wishes you Happy Eid, click below blue link to view: ${shareUrl}`;
             return shareMessage;
         }
 
