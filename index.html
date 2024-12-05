@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eid Mubarak</title>
+    <title>Ramadan Mubarak</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
@@ -55,10 +55,37 @@
         }
 
         .user-name {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #d32f2f;
-        }
+    font-size: 4rem;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(
+        90deg,
+        #ff0066,
+        #ff6600,
+        #ffcc00,
+        #66ff66,
+        #00ffcc,
+        #0066ff,
+        #9900cc,
+        #ff33cc,
+        #ff0066
+    );
+    background-size: 500% 500%;
+    animation: candy-colors 6s infinite linear;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes candy-colors {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 200% 50%; }
+    75% { background-position: 300% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
 
         .countdown {
             font-size: 1.8rem;
@@ -123,12 +150,12 @@
         <div class="quote-greeting">wishes you</div>
     
         <div class="quote-text">
-            <span> A very Happy Eid-Mubarak to you! </span>
+            <span> A very Happy Ramadan Mubarak to you! </span>
         </div>
         <!-- Quote Element -->
         <div class="quote-text">
             <i class="fas fa-quote-left"></i>
-            <span id="quote">On this Eid, I wish you and your family a Happy, Healthy, and Safe Eid-Ul-Adha. May Allah(SWT) protect us all from this pandemic.</span>
+            <span id="quote">On this Ramadan, I wish you and your family a Happy, Healthy, and Safe Month of Ramadan. May Allah bless you with prosperity and abundance.</span>
         </div>
 
         <!-- Countdown Timer -->
@@ -179,7 +206,7 @@
             const name = nameInput.value.trim();
             const baseUrl = window.location.href.split('?')[0];
             const shareUrl = `${baseUrl}?name=${encodeURIComponent(name)}`;
-            const shareMessage = `*${name.toUpperCase()}* wishes you Happy Eid, click below blue link to view: ${shareUrl}`;
+            const shareMessage = `*${name.toUpperCase()}* wishes you Happy Ramadan, click below blue link to view: ${shareUrl}`;
             return shareMessage;
         }
 
@@ -192,13 +219,13 @@
 
         // Countdown Timer Logic
         function startCountdown() {
-            const nextEid = new Date("2025-06-17T00:00:00"); // Replace with the actual Eid date
+            const nextEid = new Date("2025-02-28T00:00:00"); // Replace with the actual Eid date
             function updateCountdown() {
                 const now = new Date();
                 const diff = nextEid - now;
 
                 if (diff <= 0) {
-                    countdownElement.textContent = "Eid is here!";
+                    countdownElement.textContent = "Ramadan is here!";
                     return;
                 }
 
