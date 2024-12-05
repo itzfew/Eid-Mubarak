@@ -7,6 +7,6 @@ window.onload = function() {
   ];
 
   if (!allowedUrls.includes(currentUrl)) {
-    window.location.href = "index.html"; // Replace with your desired redirect URL
+    window.location.href = "https://wishing.pages.dev/eid-ul-fitr.html"; // Replace with your desired redirect URL
   }
 };
