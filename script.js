@@ -6,17 +6,20 @@ const shareLinkInput = document.getElementById('share-link');
 
 // Function to update greeting with name from URL if available
 function updateGreetingFromURL() {
+    // Get the URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name');
+    const name = urlParams.get('name');  // Get the 'name' query parameter
     
     if (name) {
-        greetingElement.textContent = name;  // Show the user's name in the greeting
+        // If name is found in URL, display it
+        greetingElement.textContent = name;
     } else {
-        greetingElement.textContent = '';  // If no name in URL, show nothing
+        // If no name, display empty or default message
+        greetingElement.textContent = '';
     }
 }
 
-// Event listener for input change
+// Event listener for input change (updates greeting based on input)
 nameInput.addEventListener('input', () => {
     const name = nameInput.value.trim();
     if (name) {
